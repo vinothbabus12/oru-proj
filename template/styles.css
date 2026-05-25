@@ -1,0 +1,92 @@
+:root{
+  --bg:#f6f7fb; --card:#fff; --primary:#0b63ff; --muted:#6b7280;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:#111}
+.center{min-height:100vh;display:grid;place-items:center;padding:24px}
+.card{width:100%;max-width:420px;background:var(--card);padding:28px;border-radius:12px;box-shadow:0 6px 20px rgba(12,15,30,.08)}
+.brand{margin:0;font-size:28px;color:var(--primary)}
+.lead{margin:.25rem 0 1rem;color:var(--muted)}
+label{display:block;font-size:13px;margin-top:16px;margin-bottom:8px;color:#334155}
+input[type=text],input[type=password],input[type=date]{width:100%;padding:14px 16px;border:1px solid #e6e9ef;border-radius:14px;font-size:15px;background:#f8f9ff;transition:border .2s ease,box-shadow .2s ease}
+input[type=text]:focus,input[type=password]:focus,input[type=date]:focus{border-color:rgba(11,99,255,.35);box-shadow:0 0 0 4px rgba(11,99,255,.08);outline:none}
+.pw-row{display:flex;gap:8px;align-items:center}
+.pw-row .link{background:transparent;border:0;color:var(--primary);cursor:pointer;padding:8px}
+.row{display:flex;align-items:center}
+.between{justify-content:space-between}
+.checkbox{font-size:14px;color:var(--muted)}
+.small{font-size:13px;color:var(--muted)}
+.primary{width:100%;margin-top:22px;padding:14px 18px;background:var(--primary);color:#fff;border:none;border-radius:12px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 10px 25px rgba(11,99,255,.16);transition:transform .2s ease,background .2s ease}
+.primary:hover{transform:translateY(-1px);background:#094cd8}
+.outline{width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;background:#fff;margin-top:8px;cursor:pointer}
+.divider{text-align:center;color:var(--muted);margin:12px 0}
+.bus-card-action{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
+.card-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.select-button{min-width:120px;padding:10px 14px;border-radius:10px;border:1px solid transparent;background:#eef4ff;color:#0b63ff;cursor:pointer;transition:background .2s ease,border .2s ease,transform .2s ease}
+.select-button:hover{background:#d9e6ff;transform:translateY(-1px)}
+.seat-card{max-width:520px}
+.bus-summary{margin-bottom:18px}
+.bus-summary-card{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border:1px solid #e6e9ef;border-radius:16px;background:#ffffff}
+.bus-meta{display:flex;gap:14px;margin-top:12px;color:#475569;font-size:14px}
+.seat-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.seat{border:1px solid #e6e9ef;border-radius:12px;background:#fff;color:#0f172a;padding:16px 0;font-weight:700;cursor:pointer;transition:transform .2s ease,background .2s ease}
+.seat:hover{background:#eff6ff;transform:translateY(-1px)}
+.seat.selected{background:linear-gradient(135deg,#2563eb,#60a5fa);color:#fff;border-color:#2563eb}
+.seat-booked{background:#f8fafc;color:#94a3b8;cursor:not-allowed;border-color:#cbd5e1}
+.seat-actions{margin-top:20px;padding:18px 16px;border:1px solid #e2e8f0;border-radius:16px;background:#f8fbff}
+.seat-note{margin:0;color:#475569;font-size:14px}
+.price-row{display:flex;justify-content:space-between;align-items:center;margin:14px 0;font-weight:700;font-size:17px}
+.confirm-card{max-width:480px}
+.confirm-details{display:grid;gap:12px;margin-bottom:22px}
+.booking-line{display:flex;justify-content:space-between;gap:16px;padding:12px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px}
+.booking-total{background:#eef4ff}
+
+@media (max-width:520px){.search-card,.seat-card,.confirm-card,.payment-card{padding:20px}}
+.payment-form{display:grid;gap:16px}
+.field-half{width:100%}
+@media (min-width:540px){.field-half{width:calc(50% - 6px)}}
+@media (max-width:420px){.card{padding:20px;border-radius:10px}}.msg{min-height:1.5em;margin-top:10px;font-size:14px}
+.msg.error{color:#b91c1c}
+.msg.success{color:#059669}
+.link{color:var(--primary);text-decoration:none}
+.results{margin-top:18px}
+.bus-card{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border:1px solid #e6e9ef;border-radius:12px;margin-top:12px;background:#fafbff}
+.bus-card p{margin:4px 0;color:#4b5563;font-size:14px}
+.bus-price{font-weight:700;color:#111}
+.search-card{background:linear-gradient(180deg,rgba(255,255,255,.96),#f8fbff);border:none}
+.card-header{margin-bottom:22px}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:700;color:#0b63ff;background:rgba(11,99,255,.08);margin-bottom:12px}
+.badge::before{content:'🚍'}
+.search-form{display:grid;gap:14px}
+
+.badge.success{background:linear-gradient(90deg,#ecfdf5,#eff6ff);color:#059669}
+.badge.success::before{content:'✅'}
+
+/* history widget */
+.history-widget{position:fixed;right:18px;top:18px;z-index:60;font-family:inherit}
+.history-widget .history-btn{background:#fff;border:1px solid #e6e9ef;padding:8px 10px;border-radius:999px;display:flex;align-items:center;gap:8px;cursor:pointer;box-shadow:0 6px 18px rgba(12,15,30,.08)}
+.history-widget .history-btn .count{background:var(--primary);color:#fff;padding:2px 6px;border-radius:999px;font-size:12px}
+.history-widget .history-dropdown{position:absolute;right:0;top:48px;width:320px;background:#fff;border-radius:12px;border:1px solid #e6eefc;padding:10px;box-shadow:0 12px 40px rgba(12,15,30,.08);display:block}
+.history-widget .history-dropdown[aria-hidden="true"]{display:none}
+.hd-item{display:flex;justify-content:space-between;align-items:center;padding:8px 6px;border-bottom:1px solid #f1f5f9}
+.hd-item:last-child{border-bottom:none}
+.hd-left{max-width:70%}
+.hd-right{text-align:right}
+.hd-empty{color:#6b7280;padding:6px}
+
+/* QR modal */
+.qr-modal{position:fixed;inset:0;display:grid;place-items:center;background:rgba(2,6,23,.45);z-index:80;visibility:hidden;opacity:0;transition:opacity .18s ease,visibility .18s}
+.qr-modal.open{visibility:visible;opacity:1}
+.qr-box{background:#fff;padding:20px;border-radius:12px;max-width:360px;width:92%;text-align:center;position:relative}
+.qr-close{position:absolute;right:10px;top:8px;background:transparent;border:0;font-size:18px;cursor:pointer}
+.qr-img{width:200px;height:200px;margin:12px auto;border-radius:12px;background:linear-gradient(135deg,#eef2ff,#fff);display:grid;place-items:center;font-weight:700;color:#0b63ff}
+
+/* ensure history widget doesn't cover key UI on small screens */
+@media (max-width:520px){
+  .history-widget{right:10px;top:10px}
+  .history-widget .history-dropdown{right:0;left:10px;width:auto;min-width:220px}
+}
+
+
+@media (max-width:420px){.card{padding:20px;border-radius:10px}}

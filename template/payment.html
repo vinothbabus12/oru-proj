@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pay Online — BusBook</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="center">
+    <section class="card payment-card">
+      <div class="card-header">
+        <span class="badge">Payment</span>
+        <h1 class="brand">Pay for your seat</h1>
+        <p class="lead">Enter your card details to complete the booking.</p>
+      </div>
+
+      <div class="payment-summary" id="paymentSummary"></div>
+
+      <form id="paymentForm" class="payment-form" novalidate>
+        <label for="cardName">Name on card</label>
+        <input id="cardName" name="cardName" type="text" placeholder="Full name" required>
+
+        <label for="cardNumber">Card number</label>
+        <input id="cardNumber" name="cardNumber" type="text" inputmode="numeric" maxlength="19" placeholder="1234 5678 9012 3456" required>
+
+        <div class="row">
+          <div class="field-half">
+            <label for="expiry">Expiry</label>
+            <input id="expiry" name="expiry" type="text" placeholder="MM/YY" maxlength="5" required>
+          </div>
+          <div class="field-half">
+            <label for="cvc">CVC</label>
+            <input id="cvc" name="cvc" type="text" inputmode="numeric" maxlength="4" placeholder="123" required>
+          </div>
+        </div>
+
+        <button class="primary" type="submit">Pay ₹<span id="payTotal">0</span></button>
+      </form>
+
+      <div style="margin-top:14px;text-align:center">
+        <button id="openQr" class="outline" type="button">Pay via QR</button>
+      </div>
+
+      <div id="qrModal" class="qr-modal" aria-hidden="true">
+        <div class="qr-box">
+          <button id="qrClose" class="qr-close">✕</button>
+          <h3>Scan QR to pay (camera)</h3>
+          <div id="qrScanner" style="width:100%;height:260px;border-radius:8px;overflow:hidden;background:#fff;display:grid;place-items:center">Camera loading…</div>
+          <div style="display:flex;gap:10px;justify-content:center;margin-top:12px">
+            <button id="qrStart" class="outline" type="button">Start Camera</button>
+            <button id="qrStop" class="outline" type="button">Stop</button>
+            <button id="qrScan" class="primary">Simulate Scan</button>
+          </div>
+          <p class="small" style="margin-top:8px">This uses your webcam to scan a QR (demo). Allow camera access when prompted.</p>
+        </div>
+      </div>
+
+      <p class="small"><a class="link" href="seat.html">Back to seat selection</a></p>
+    </section>
+  </main>
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/dist/html5-qrcode.min.js"></script>
+  <script src="payment.js"></script>
+  <script src="history.js"></script>
+  <script src="qr.js"></script>
+</body>
+</html>

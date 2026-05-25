@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Booking Confirmed — BusBook</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="center">
+    <section class="card confirm-card">
+      <div class="card-header">
+        <span class="badge">✅ Payment successful</span>
+        <h1 class="brand">Booking confirmed</h1>
+        <p class="lead">Your bus ticket has been booked successfully.</p>
+      </div>
+
+      <div class="confirm-details" id="confirmDetails"></div>
+
+      <button class="primary" onclick="window.location.href='search.html'">Home</button>
+    </section>
+  </main>
+  <script>
+    const data = JSON.parse(localStorage.getItem('bookingInfo') || 'null');
+    const details = document.getElementById('confirmDetails');
+    if (!data) {
+      details.innerHTML = '<p class="msg error">No booking found. Please search and book again.</p>';
+    } else {
+      details.innerHTML = `
+        <div class="booking-line"><strong>Bus</strong><span>${data.name}</span></div>
+        <div class="booking-line"><strong>Route</strong><span>${data.departure} → ${data.arrival}</span></div>
+        <div class="booking-line"><strong>Travel date</strong><span>${data.travelDate}</span></div>
+        <div class="booking-line"><strong>Departure</strong><span>${data.time}</span></div>
+        <div class="booking-line"><strong>Seats</strong><span>${data.seats.join(', ')}</span></div>
+        <div class="booking-line booking-total"><strong>Paid amount</strong><span>${data.amount}</span></div>
+      `;
+    }
+  </script>
+  <script src="history.js"></script>
+</body>
+</html>

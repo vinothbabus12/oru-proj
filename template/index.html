@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BusBook Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="center">
+    <section class="card">
+      <h1 class="brand">BusBook</h1>
+      <p class="lead">Welcome to the bus ticket booking demo.</p>
+      <a class="primary" href="login.html">Open Login</a>
+      <p class="small" style="margin-top:12px;">Use this page if the login link was not opening directly.</p>
+
+      <hr style="margin:18px 0;border:none;border-top:1px solid #eef2ff" />
+      <h2 style="font-size:16px;margin:0 0 8px">Your Bookings</h2>
+      <div id="history">
+        <p class="small">Sign in and book to see your booking history here.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="search.js"></script>
+  <script>
+    // render booking history for current user
+    (function(){
+      const historyEl = document.getElementById('history');
+      const userId = localStorage.getItem('userId') || 'guest';
+      const key = 'bookings_' + userId;
+      const list = JSON.parse(localStorage.getItem(key) || '[]');
+      if(!list.length){
+        if(userId === 'guest'){
+          historyEl.innerHTML = '<p class="small">No bookings yet. Sign in and book a bus to see your history.</p>';
+        } else {
+          historyEl.innerHTML = '<p class="small">No bookings yet. Book a bus to see it here.</p>';
+        }
+        return;
+      }
+      const html = list.slice().reverse().map((b) => {
+        const info = JSON.stringify(b).replace(/'/g, "\\'");
+        return `
+        <div style="margin-top:10px;padding:10px;border:1px solid #e6eefc;border-radius:10px;background:#fff;display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <strong>${b.name}</strong>
+            <div class="small">${b.departure} → ${b.arrival} · ${b.travelDate}</div>
+            <div class="small">Seats: ${b.seats.join(', ')} · ${b.time}</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-weight:700">${b.amount}</div>
+            <a class="link" href="confirm.html" onclick="localStorage.setItem('bookingInfo', '${info}');">View</a>
+          </div>
+        </div>
+      `}).join('');
+      historyEl.innerHTML = html;
+    })();
+  </script>
+  <script src="history.js"></script>
+</body>
+</html>

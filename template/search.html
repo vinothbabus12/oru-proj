@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Book a Bus — BusBook</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="center">
+    <section class="card search-card">
+      <div class="card-header">
+        <span class="badge">Next bus</span>
+        <h1 class="brand">Find Your Bus</h1>
+        <p class="lead">Choose departure, arrival and travel date to see the best buses.</p>
+      </div>
+
+      <form id="searchForm" class="search-form" novalidate>
+        <label for="departure">Departure city</label>
+        <input id="departure" name="departure" type="text" placeholder="e.g. Chennai" required>
+
+        <label for="arrival">Arrival city</label>
+        <input id="arrival" name="arrival" type="text" placeholder="e.g. Bangalore" required>
+
+        <label for="travelDate">Travel date</label>
+        <input id="travelDate" name="travelDate" type="date" required>
+
+        <button class="primary icon-button" type="submit">
+          <span>Search buses</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </form>
+      
+      <hr style="margin:18px 0;border:none;border-top:1px solid #eef2ff" />
+      <h3 style="font-size:15px;margin:0 0 8px">Your Bookings</h3>
+      <div id="history">
+        <p class="small">No recent bookings. Book a bus to see it here.</p>
+      </div>
+
+      <div id="results" class="results"></div>
+      <p class="small"><a class="link" href="login.html">Back to Login</a></p>
+    </section>
+  </main>
+
+  <script src="search.js"></script>
+  <script>
+    (function(){
+      const historyEl = document.getElementById('history');
+      const userId = localStorage.getItem('userId') || 'guest';
+      const key = 'bookings_' + userId;
+      const list = JSON.parse(localStorage.getItem(key) || '[]');
+      if(!list.length){
+        historyEl.innerHTML = '<p class="small">No recent bookings. Book a bus to see it here.</p>';
+        return;
+      }
+      const html = list.slice().reverse().map(b => {
+        const info = JSON.stringify(b).replace(/'/g, "\\'");
+        return `
+          <div style="margin-top:10px;padding:10px;border:1px solid #e6eefc;border-radius:10px;background:#fff;display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <strong>${b.name}</strong>
+              <div class="small">${b.departure} → ${b.arrival} · ${b.travelDate}</div>
+              <div class="small">Seats: ${b.seats.join(', ')} · ${b.time}</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-weight:700">${b.amount}</div>
+              <a class="link" href="confirm.html" onclick="localStorage.setItem('bookingInfo', '${info}');">View</a>
+            </div>
+          </div>
+        `;
+      }).join('');
+      historyEl.innerHTML = html;
+    })();
+  </script>
+  <script src="history.js"></script>
+</body>
+</html>

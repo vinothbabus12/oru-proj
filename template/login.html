@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bus Ticket Booking — Login</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="center">
+    <section class="card">
+      <h1 class="brand">BusBook</h1>
+      <p class="lead">Sign in to book your bus tickets</p>
+
+      <form id="loginForm" novalidate>
+        <label for="identifier">Email or phone</label>
+        <input id="identifier" name="identifier" type="text" placeholder="you@example.com or 0123456789" required>
+
+        <label for="password">Password</label>
+        <div class="pw-row">
+          <input id="password" name="password" type="password" placeholder="Enter password" minlength="6" required>
+          <button type="button" id="togglePw" class="link">Show</button>
+        </div>
+
+        <div class="row between">
+          <label class="checkbox"><input id="remember" type="checkbox"> Remember me</label>
+          <a class="link small" href="forgot.html">Forgot?</a>
+        </div>
+
+        <button id="submitBtn" class="primary" type="submit">Sign in</button>
+
+        <div class="divider">or</div>
+        <button type="button" class="outline">Continue with Google</button>
+
+        <p id="msg" class="msg" aria-live="polite"></p>
+      </form>
+
+      <p class="small">Don't have an account? <a href="signup.html">Sign up</a></p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+  <script src="history.js"></script>
+</body>
+</html>

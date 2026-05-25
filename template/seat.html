@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Select Seat — BusBook</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="center">
+    <section class="card seat-card">
+      <div class="card-header">
+        <span class="badge">Choose seat</span>
+        <h1 class="brand">Select your seat</h1>
+        <p class="lead">Book a seat and pay online for your chosen bus.</p>
+      </div>
+
+      <div class="bus-summary" id="busSummary"></div>
+
+      <div class="seat-grid" id="seatGrid"></div>
+
+      <div class="seat-actions">
+        <p class="seat-note">Select 1 or more seats to continue.</p>
+        <div class="price-row">
+          <span>Total</span>
+          <span id="totalPrice">₹0</span>
+        </div>
+        <button id="payBtn" class="primary" type="button" disabled>Pay online</button>
+      </div>
+
+      <p class="small"><a class="link" href="search.html">Back to search</a></p>
+    </section>
+  </main>
+
+  <script src="seat.js"></script>
+  <script src="history.js"></script>
+</body>
+</html>
